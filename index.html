@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio Minh Nhàn</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio sinh viên: giới thiệu, dự án và hoạt động sự kiện.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: badge-led hero on a pale-blue band, stacked sections on one 1080px column; blue palette: light tones for large areas, navy / blue only for small details */
+:root {
+  --navy: #21355A;
+  --blue: #255997;
+  --sky: #79BFE1;
+  --pale: #AEDEED;
+  --bg: #F6FAFC;
+  --surface: #FFFFFF;
+  --ink: #1B2A44;
+  --muted: #52627A;
+  --line: #DCE7EE;
+  --accent: #255997;
+  --accent-soft: #E4F2F8;
+  --band-hero: var(--pale);
+  --band-events: #E6F4F9;
+  --contact-bg: var(--pale);
+  --contact-ink: #1B2A44;
+  --ticket: var(--navy);
+  --ticket-ink: #FFFFFF;
+  --tag-bg: var(--sky);
+  --tag-ink: #13243F;
+  --on-dark: #FFFFFF;
+  --shadow: 0 1px 2px rgba(27,42,68,.05), 0 8px 24px rgba(27,42,68,.07);
+  --f-display: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-label: "Space Grotesk", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1A2B; --surface: #16233A; --ink: #E8F0F7; --muted: #A0B1C4; --line: #24344F;
+    --accent: #79BFE1; --accent-soft: #1B2E48;
+    --band-hero: #16304D; --band-events: #12253A; --contact-bg: #1C3A5E; --contact-ink: #E8F0F7;
+    --ticket: #79BFE1; --ticket-ink: #13243F;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1A2B; --surface: #16233A; --ink: #E8F0F7; --muted: #A0B1C4; --line: #24344F;
+  --accent: #79BFE1; --accent-soft: #1B2E48;
+  --band-hero: #16304D; --band-events: #12253A; --contact-bg: #1C3A5E; --contact-ink: #E8F0F7;
+  --ticket: #79BFE1; --ticket-ink: #13243F;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+/* Nav */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+.brand { font-family: var(--f-display); font-weight: 800; text-decoration: none; letter-spacing: -.01em; }
+.nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--muted); padding: 6px 10px; border-radius: 8px; }
+.nav-links a:hover { color: var(--ink); background: var(--accent-soft); }
+@media (max-width: 560px) { .nav-links a:not(.keep) { display: none; } }
+
+/* Hero */
+.palette-strip { display: flex; height: 6px; }
+.palette-strip span { flex: 1; }
+.palette-strip span:nth-child(1) { background: var(--navy); } .palette-strip span:nth-child(2) { background: var(--blue); } .palette-strip span:nth-child(3) { background: var(--sky); } .palette-strip span:nth-child(4) { background: var(--pale); }
+.hero { background: var(--band-hero); }
+.hero .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; padding-block: 72px 56px; }
+@media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; gap: 40px; padding-block: 48px 32px; } }
+.eyebrow { font-family: var(--f-label); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.hero h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(36px, 6vw, 60px); line-height: 1.08; letter-spacing: -.025em; margin: 12px 0 18px; text-wrap: balance; }
+.hero h1 .hl { color: var(--accent); }
+.hero p.lead { font-size: 18px; color: var(--muted); max-width: 34em; margin: 0 0 28px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--f-body); padding: 13px 20px; border-radius: 10px; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .15s, background .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--navy); color: var(--on-dark); }
+.btn-primary:hover { background: var(--blue); }
+.btn-ghost { background: var(--surface); border-color: var(--line); color: var(--ink); }
+
+/* Staff badge */
+.badge-hang { display: flex; flex-direction: column; align-items: center; }
+.lanyard { width: 34px; height: 64px; background: repeating-linear-gradient(135deg, var(--navy) 0 8px, var(--blue) 8px 16px, var(--sky) 16px 24px, var(--pale) 24px 32px); border-radius: 0 0 4px 4px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+.clip { width: 46px; height: 18px; background: var(--muted); border-radius: 4px; margin-top: -2px; }
+.badge { width: min(300px, 100%); margin-top: -6px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; transform-origin: top center; animation: sway 6s ease-in-out infinite; }
+@keyframes sway { 0%,100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+.badge-top { background: var(--navy); color: var(--on-dark); padding: 16px 18px 14px; display: flex; justify-content: space-between; align-items: center; }
+.badge-top span { font-family: var(--f-label); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+.badge-top .role-tag { background: var(--tag-bg); color: var(--tag-ink); padding: 3px 9px; border-radius: 999px; font-weight: 600; letter-spacing: .08em; }
+.punch { width: 44px; height: 8px; border-radius: 8px; background: var(--bg); margin: 0 auto; position: relative; top: -14px; }
+.badge-body { padding: 0 22px 22px; text-align: center; }
+.avatar { width: 112px; height: 112px; border-radius: 50%; margin: 4px auto 14px; background: var(--accent-soft); display: grid; place-items: center; font: 800 38px var(--f-display); color: var(--accent); overflow: hidden; border: 4px solid var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.badge-name { font: 800 21px/1.25 var(--f-display); margin: 0; }
+.badge-sub { color: var(--muted); font-size: 14px; margin: 4px 0 14px; }
+.badge-meta { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px dashed var(--line); padding-top: 12px; gap: 8px; text-align: left; }
+.badge-meta dt { font-family: var(--f-label); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.badge-meta dd { margin: 0; font-weight: 600; font-size: 14px; }
+
+/* Sections */
+section.block { padding-block: 64px; }
+section.block + section.block { border-top: 1px solid var(--line); }
+#su-kien { background: var(--band-events); border-top: 0 !important; }
+#su-kien + section.block { border-top: 0; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.sec-head h2 { font: 800 clamp(28px, 4vw, 38px)/1.15 var(--f-display); letter-spacing: -.02em; margin: 8px 0 0; text-wrap: balance; }
+.sec-head p { color: var(--muted); margin: 0; max-width: 32em; }
+
+/* About */
+.about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
+@media (max-width: 820px) { .about { grid-template-columns: 1fr; } }
+.about-text { min-width: 0; }
+.about-text p { margin: 0 0 16px; max-width: 62ch; font-size: 17px; }
+.facts { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 8px 22px; align-self: start; }
+.facts div { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.facts div:last-child { border-bottom: 0; }
+.facts dt { color: var(--muted); font-size: 14px; }
+.facts dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chip { font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.about-text .chip:nth-child(4n+1) { background: var(--navy); color: var(--on-dark); } .about-text .chip:nth-child(4n+2) { background: var(--blue); color: var(--on-dark); } .about-text .chip:nth-child(4n+3) { background: var(--sky); color: #13243F; } .about-text .chip:nth-child(4n+4) { background: var(--pale); color: #13243F; }
+.subhead { font-family: var(--f-label); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 28px 0 6px; }
+
+/* Projects */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: 500 14px var(--f-body); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--navy); color: var(--on-dark); border-color: var(--navy); }
+.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; }
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; transition: transform .18s, box-shadow .18s; }
+.proj:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.thumb { aspect-ratio: 16 / 9; max-width: 100%; position: relative; background: var(--accent-soft); overflow: hidden; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.thumb .ftype { z-index: 1; }
+.thumb .ph { position: absolute; inset: 0; display: grid; place-items: center; }
+.ph-file { width: 64px; height: 80px; border-radius: 6px 18px 6px 6px; background: var(--surface); box-shadow: var(--shadow); display: grid; place-items: center; font: 600 13px var(--f-label); letter-spacing: .06em; }
+.ftype { position: absolute; top: 12px; left: 12px; font: 600 11px var(--f-label); letter-spacing: .1em; text-transform: uppercase; padding: 4px 9px; border-radius: 6px; color: #fff; }
+.t-pdf { background: #D93A2E; }
+.ftype.g-hr { background: var(--navy); color: var(--on-dark); } .ftype.g-biz { background: var(--blue); color: var(--on-dark); } .t-slides { background: var(--sky); color: #13243F; } .t-docs { background: var(--blue); } .t-sheets { background: #188038; } .t-video { background: var(--navy); } .t-khac { background: #5B6380; }
+.proj-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
+.proj-meta { font: 500 13px var(--f-label); color: var(--muted); }
+.proj h3 { font: 700 18px/1.35 var(--f-display); margin: 0; }
+.proj p { margin: 0; color: var(--muted); font-size: 15px; }
+.proj .chips { margin-top: auto; padding-top: 6px; }
+.proj .chip { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.open-link { font-weight: 600; font-size: 14px; color: var(--accent); }
+.proj h3 a { text-decoration: none; }
+.proj h3 a:hover { color: var(--accent); }
+.proj-role { font-size: 14px; font-weight: 600; color: var(--accent); }
+.proj-files { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 12px; margin-top: 4px; border-top: 1px solid var(--line); }
+.file-btn { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; text-decoration: none; padding: 7px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); }
+.file-btn:hover { background: var(--accent); color: var(--bg); }
+.file-btn .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* Events */
+.events { display: flex; flex-direction: column; gap: 28px; }
+.event { display: grid; grid-template-columns: 150px 1fr; gap: 28px; }
+@media (max-width: 680px) { .event { grid-template-columns: 1fr; gap: 12px; } }
+.stub { align-self: start; background: var(--ticket); color: var(--ticket-ink); border-radius: 12px; padding: 14px 16px; position: relative; font-variant-numeric: tabular-nums; }
+.stub::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 34px; border-top: 2px dashed color-mix(in srgb, var(--ticket-ink) 40%, transparent); }
+.stub .m { font: 600 12px var(--f-label); letter-spacing: .12em; text-transform: uppercase; }
+.stub .y { font: 800 28px/1.1 var(--f-display); }
+.stub .r { font: 600 12px var(--f-label); letter-spacing: .04em; margin-top: 18px; }
+@media (max-width: 680px) { .stub { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; } .stub::after { display: none; } .stub .y { font-size: 20px; } .stub .r { margin: 0 0 0 auto; } }
+.event-body { min-width: 0; }
+.event h3 { font: 700 21px/1.3 var(--f-display); margin: 0 0 4px; }
+.event .role { color: var(--accent); font-weight: 600; font-size: 15px; margin: 0 0 10px; }
+.event p.desc { margin: 0 0 12px; max-width: 62ch; }
+.event ul { margin: 0 0 16px; padding-left: 20px; color: var(--muted); }
+.event li { margin-bottom: 4px; }
+.photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 680px) { .photos { grid-template-columns: repeat(2, 1fr); } }
+.photo { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 10px; overflow: hidden; border: 0; padding: 0; cursor: zoom-in; position: relative; background: var(--accent-soft); }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+.photo:hover img { transform: scale(1.05); }
+.photo .ph { position: absolute; inset: 0; display: grid; place-items: center; font: 500 12px var(--f-label); color: var(--muted); text-align: center; padding: 8px; }
+
+/* Contact */
+.contact { background: var(--contact-bg); color: var(--contact-ink); border-radius: 24px; padding: 48px clamp(24px, 5vw, 56px); display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center; }
+@media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+.contact h2 { font: 800 clamp(26px, 4vw, 36px)/1.2 var(--f-display); margin: 0 0 10px; text-wrap: balance; }
+.contact p { margin: 0; opacity: .8; }
+.contact-list { display: flex; flex-direction: column; gap: 10px; }
+.contact-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: color-mix(in srgb, var(--surface) 55%, transparent); border: 1px solid color-mix(in srgb, var(--surface) 70%, transparent); border-radius: 12px; padding: 12px 14px; min-width: 0; }
+.contact-row .k { font: 600 11px var(--f-label); letter-spacing: .1em; text-transform: uppercase; opacity: .6; }
+.contact-row .v { font-weight: 600; overflow-wrap: anywhere; user-select: all; }
+.contact-row a.v { text-decoration: none; user-select: auto; }
+.copy { font: 600 13px var(--f-body); background: var(--navy); color: var(--on-dark); border: 0; padding: 7px 12px; border-radius: 8px; cursor: pointer; flex-shrink: 0; }
+footer { padding-block: 32px 40px; color: var(--muted); font-size: 14px; text-align: center; }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; z-index: 20; background: rgba(8,10,20,.88); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb img { max-width: 100%; max-height: 82vh; border-radius: 10px; }
+.lb figcaption { color: #E9ECF7; text-align: center; margin-top: 12px; font-size: 14px; }
+.lb button { position: absolute; background: rgba(255,255,255,.14); color: #fff; border: 0; width: 44px; height: 44px; border-radius: 50%; font-size: 22px; cursor: pointer; }
+.lb .x { top: calc(16px + env(safe-area-inset-top, 0px)); right: calc(16px + env(safe-area-inset-right, 0px)); }
+.lb .prev { left: calc(16px + env(safe-area-inset-left, 0px)); top: 50%; }
+.lb .next { right: calc(16px + env(safe-area-inset-right, 0px)); top: 50%; }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Điều hướng chính">
+  <div class="wrap">
+    <a class="brand" href="#top" id="brand">Minh Nhàn</a>
+    <div class="nav-links">
+      <a href="#gioi-thieu">Giới thiệu</a>
+      <a href="#du-an" class="keep">Dự án</a>
+      <a href="#su-kien" class="keep">Sự kiện</a>
+      <a href="#lien-he">Liên hệ</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" id="h-eyebrow"></div>
+      <h1 id="h-title"></h1>
+      <p class="lead" id="h-lead"></p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#du-an">Xem dự án</a>
+        <a class="btn btn-ghost" id="cv-btn" target="_blank" rel="noopener">Xem CV ↗</a>
+      </div>
+    </div>
+    <div class="badge-hang" aria-hidden="true">
+      <div class="lanyard"></div>
+      <div class="clip"></div>
+      <div class="badge">
+        <div class="badge-top"><span>Sinh viên</span><span class="role-tag" id="b-tag"></span></div>
+        <div class="badge-body">
+          <div class="punch"></div>
+          <div class="avatar" id="b-avatar"></div>
+          <p class="badge-name" id="b-name"></p>
+          <p class="badge-sub" id="b-sub"></p>
+          <dl class="badge-meta" id="b-meta"></dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="palette-strip" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<main>
+  <section class="block" id="gioi-thieu">
+    <div class="wrap">
+      <div class="sec-head"><div><div class="eyebrow">Giới thiệu</div><h2>Mình là ai</h2></div></div>
+      <div class="about">
+        <div class="about-text" id="about-text"></div>
+        <dl class="facts" id="facts"></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="du-an">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Dự án tại UEL</div><h2>Những gì mình đã làm</h2></div>
+        <div class="filters" id="filters" role="group" aria-label="Lọc theo loại file"></div>
+      </div>
+      <div class="projects" id="projects"></div>
+    </div>
+  </section>
+
+  <section class="block" id="su-kien">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Ngoài giờ học</div><h2>Mình thích chạy sự kiện</h2></div>
+        <p id="events-intro"></p>
+      </div>
+      <div class="events" id="events"></div>
+    </div>
+  </section>
+
+  <section class="block" id="lien-he">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Cùng làm việc với mình nhé</h2>
+          <p>Mình đang tìm cơ hội thực tập ở vị trí C&amp;B. Anh/chị có thể liên hệ qua email hoặc điện thoại bên cạnh.</p>
+        </div>
+        <div class="contact-list" id="contact-list"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh">
+  <button class="x" id="lb-x" aria-label="Đóng">×</button>
+  <button class="prev" id="lb-prev" aria-label="Ảnh trước">‹</button>
+  <figure style="margin:0"><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+  <button class="next" id="lb-next" aria-label="Ảnh sau">›</button>
+</div>
+
+<script>
+/* ==========================================================
+   SỬA NỘI DUNG CỦA BẠN Ở ĐÂY
+   ----------------------------------------------------------
+   Ảnh / file có thể là:
+   1) ID file Google Drive, ví dụ "1AbCdEfGhIjKlMnOp"
+      (lấy trong link drive.google.com/file/d/<ID>/view,
+       và nhớ bật chia sẻ "Bất kỳ ai có đường liên kết")
+   2) Đường dẫn ảnh trong thư mục, ví dụ "images/su-kien-1.jpg"
+   Để trống "" thì trang hiện ô giữ chỗ.
+   ========================================================== */
+const DATA = {
+  name: "Minh Nhàn",
+  initials: "MN",
+  avatar: "images/avatar.jpg",      // ảnh đại diện: Drive ID hoặc "images/avatar.jpg"
+  tagline: "Ứng tuyển Thực tập sinh Nhân sự (C&B)",
+  lead: "Sinh viên Quản trị Kinh doanh, mong muốn hỗ trợ tính lương chính xác và vận hành hành chính nhân sự hiệu quả: theo dõi chấm công, cập nhật hồ sơ nhân viên và hỗ trợ thủ tục bảo hiểm xã hội.",
+  badgeTag: "C&B",                  // chữ nhỏ trên thẻ
+  school: "Trường Đại học Kinh tế – Luật, ĐHQG-HCM",
+  schoolShort: "UEL · ĐHQG-HCM",
+  major: "Quản trị Kinh doanh",
+  majorShort: "QTKD",
+  year: "2023 – 2027",
+  gradYear: "2027",
+  gpa: "8.2 / 10",
+  cv: "https://drive.google.com/file/d/16zwjFPjY6ZQ_beMbskQ0G_kHwqD80gsb/view",  // CV C&B Intern trên Drive (ai có link đều xem được)
+  about: [
+    "Chào anh/chị, mình là Minh Nhàn, sinh viên ngành Quản trị Kinh doanh tại Trường Đại học Kinh tế – Luật, ĐHQG-HCM (khóa 2023 – 2027).",
+    "Mình đang tìm vị trí Thực tập sinh C&B (Lương thưởng & Phúc lợi). Mình muốn đóng góp vào việc theo dõi chấm công, cập nhật hồ sơ nhân viên và hỗ trợ thủ tục bảo hiểm xã hội, giúp công việc nhân sự hằng ngày chính xác và đúng quy định, đồng thời học hỏi thực tế quy trình lương thưởng.",
+    "Qua các đề tài nghiên cứu về quản trị nhân sự chiến lược tại Vinamilk và hành vi tổ chức tại VietJet Air, mình đã làm quen với cách phân tích dữ liệu nhân sự và đề xuất giải pháp. Ngoài giờ học, mình thích tham gia tổ chức sự kiện."
+  ],
+  skills: ["Làm việc nhóm", "Quản lý thời gian", "Tin học văn phòng", "Thiết kế", "Phân tích nhân sự"],
+  languages: "TOEIC 815 · HSK 3",
+  langDetail: ["TOEIC Nghe – Đọc 815/990", "TOEIC Nói – Viết 280/400", "HSK 3"],
+
+  // group: nhóm để lọc · files: các file trên Google Drive (kind: Báo cáo / Slide / Video, id: ID file Drive)
+  projects: [
+    { title: "Quản trị nhân sự chiến lược & tuyển dụng: Vinamilk", group: "Nhân sự", course: "Quản trị nguồn nhân lực", date: "04/2026 – 06/2026", role: "Trưởng nhóm",
+      desc: "Phân tích khung thu hút và giữ chân nhân tài trên hơn 10.500 nhân viên, đối chiếu với các mô hình Quản trị nhân sự chiến lược. Đề xuất 3 kế hoạch hành động SMART, trong đó có hoạch định nhân lực dự báo nhằm rút ngắn 20% thời gian tuyển cho các vị trí then chốt.",
+      tags: ["Strategic HRM", "Tuyển dụng", "Giữ chân nhân tài"],
+      files: [{ kind: "Báo cáo", id: "1ifueJWiVeRgym-dx2n5TMaoWMPq648oP" }], thumb: "images/projects/vinamilk.jpg" },
+    { title: "Hành vi tổ chức & chính sách nhân sự của VietJet Air", group: "Nhân sự", course: "Hành vi tổ chức", date: "04/2026 – 06/2026", role: "Thành viên nghiên cứu",
+      desc: "Đánh giá chính sách hành vi tổ chức và hệ thống đánh giá hiệu suất cho lực lượng hơn 6.950 nhân viên. Đề xuất giải pháp chăm lo sức khỏe nhân viên và mô hình ca làm linh hoạt để giảm mệt mỏi, kiệt sức mùa cao điểm.",
+      tags: ["Hành vi tổ chức", "Đánh giá hiệu suất", "Phúc lợi"],
+      files: [{ kind: "Báo cáo", id: "1VJNK3aRb_PPMGlIF-cJvM-WO7RB5gem5" }], thumb: "images/projects/vietjet.jpg" },
+    { title: "So sánh phong cách lãnh đạo & văn hóa doanh nghiệp: FPT và Vingroup", group: "Nhân sự", course: "Văn hóa doanh nghiệp", date: "12/2025 – 03/2026", role: "",
+      desc: "Phân tích phong cách lãnh đạo và văn hóa doanh nghiệp của FPT và Vingroup, so sánh mô hình vận hành dân chủ và tập trung. Rút ra nhận định về cách giá trị doanh nghiệp củng cố tầm nhìn lãnh đạo để nâng cao năng lực cạnh tranh toàn cầu.",
+      tags: ["Lãnh đạo", "Văn hóa doanh nghiệp"],
+      files: [{ kind: "Báo cáo", id: "1JaNvoRHaUc8q0GDMUh1Kt1hFWxJBAyDP" }], thumb: "images/projects/fpt-vingroup.jpg" },
+    { title: "Ý thức sức khỏe và nghịch lý hành vi khi đặt đồ ăn online", group: "Nghiên cứu & Kinh doanh", course: "Nghiên cứu Marketing", date: "06/2026", role: "Phụ trách phần Kết quả nghiên cứu",
+      desc: "Nghiên cứu định tính về khoảng cách giữa ý định ăn uống lành mạnh và hành vi đặt đồ ăn qua GrabFood, ShopeeFood của nhân viên văn phòng. Nhóm phỏng vấn sâu 5 người, phân tích chủ đề từ 32 mã thành 7 chủ đề chính, chỉ ra vòng lặp \"hối hận – đặt lại\" và đề xuất giải pháp cho nền tảng giao đồ ăn.",
+      tags: ["Phỏng vấn sâu", "Phân tích chủ đề", "Hành vi người tiêu dùng"],
+      files: [{ kind: "Slide", id: "1Qa2D4ssaDan72lLdVQ1N3y_-GfVVuZYY" }, { kind: "Video", id: "1bvRpIyj1dfe6at42r0L345foNOnk3cfn" }], thumb: "images/projects/food-delivery.jpg" },
+    { title: "Sharera: nền tảng cho thuê đồ ngang hàng", group: "Nghiên cứu & Kinh doanh", course: "Thương mại điện tử", date: "03/2026", role: "Thành viên nhóm 6",
+      desc: "Xây dựng kế hoạch kinh doanh và website cho nền tảng cho thuê đồ dùng nhàn rỗi, hướng tới sinh viên. Gồm phân tích thị trường và đối thủ, mô hình doanh thu (phí giao dịch 10–15% và quảng cáo), kế hoạch nhân sự, kế hoạch tài chính 18 tháng với vốn khởi nghiệp 65 triệu đồng và chiến lược 4P.",
+      tags: ["Kế hoạch kinh doanh", "Thương mại điện tử", "Kế hoạch nhân sự"],
+      files: [{ kind: "Slide", id: "1zrK5rs_Bzh2MIx8NF7qE-W_JJ7x_yy8S" }], thumb: "images/projects/sharera.jpg" },
+    { title: "Mô hình tâm lý xã hội Veblen & hành vi khách hàng", group: "Nghiên cứu & Kinh doanh", course: "Hành vi khách hàng", date: "06/2026", role: "Thành viên",
+      desc: "Báo cáo giữa kỳ phân tích mô hình Veblen về tiêu dùng phô trương: bối cảnh ra đời, các luận điểm chính, ưu và nhược điểm. Ứng dụng vào nghiên cứu tình huống Apple về định giá cao cấp, hệ sinh thái và phân tầng sản phẩm.",
+      tags: ["Hành vi khách hàng", "Case study Apple"],
+      files: [{ kind: "Báo cáo", id: "1ZdzlAJmHZIC215jS_ksYHLha2SE7RQbm" }, { kind: "Slide", id: "1IX0iJRR0_zDnqycKHRF_L_Ka3gmQbK8l" }], thumb: "images/projects/veblen.jpg" },
+    { title: "Business Communication", group: "Nghiên cứu & Kinh doanh", course: "Giao tiếp kinh doanh", date: "2026", role: "Thành viên nhóm 5",
+      desc: "Bài thuyết trình nhóm môn Giao tiếp kinh doanh.",
+      tags: ["Thuyết trình", "Giao tiếp"],
+      files: [{ kind: "Slide", id: "1rO3drnPz77XZfSipV_l2r6UkIgc_TQKL" }], thumb: "images/projects/business-communication.jpg" }
+  ],
+  eventsIntro: "Ngoài giờ học, mình thích tham gia tổ chức sự kiện. Bấm vào ảnh để xem lớn.",
+  events: [
+    { name: "Concert Anh Trai Vượt Ngàn Chông Gai 2026", month: "Tháng 10", year: "2026", role: "Nhân sự vận hành (Operation)", scale: "2 đêm diễn",
+      desc: "Concert của chương trình Anh Trai Vượt Ngàn Chông Gai, diễn ra hai đêm 17–18/10/2026 tại KĐT Phú Long – Bình Trưng và The Global City, TP.HCM.",
+      did: ["Làm việc trong đội vận hành cùng Cổ Động Việt", "Chuẩn bị khu vực ghế ngồi khán giả theo sơ đồ khu và số ghế trước giờ diễn"],
+      photos: [
+        { src: "images/atvncg-2026-ca-nhan.jpg", cap: "Minh Nhàn tại khu vực sân khấu concert", pos: "center 52%" },
+        { src: "images/atvncg-2026-team.jpg", cap: "Đội vận hành tại khu ghế khán giả" },
+        { src: "images/atvncg-2026-poster.jpg", cap: "Poster concert Anh Trai Vượt Ngàn Chông Gai 2026", pos: "center 15%" }
+      ] },
+    { name: "VnExpress Marathon Ho Chi Minh City Midnight 2026", month: "Tháng 3", year: "2026", role: "Tình nguyện viên – Vật phẩm sau race", scale: "Tình nguyện viên",
+      desc: "Giải chạy đêm VnExpress Marathon tại TP. Hồ Chí Minh. Mình hoàn thành xuất sắc nhiệm vụ và được Ban tổ chức cấp chứng nhận tình nguyện viên ngày 22/03/2026.",
+      did: ["Hỗ trợ khu vực trao vật phẩm sau race cho vận động viên sau khi về đích"],
+      photos: [{ src: "images/vnexpress-marathon-2026-ca-nhan.jpg", cap: "Minh Nhàn trong áo tình nguyện viên VnExpress Marathon", pos: "center 45%" }, { src: "images/chung-nhan-vnexpress-marathon-2026.jpg", cap: "Chứng nhận tình nguyện viên VnExpress Marathon HCMC Midnight 2026", pos: "center 30%" }] },
+    { name: "HCMC Marathon 2026", month: "Tháng 1", year: "2026", role: "Tình nguyện viên", scale: "~11.000 VĐV",
+      desc: "Mùa giải thứ 13 của Ho Chi Minh City Marathon, chạy ngày 11/01/2026 với gần 11.000 vận động viên đến từ 75 quốc gia và vùng lãnh thổ. Đường chạy xuất phát và về đích tại Công viên 30/4, đường Lê Duẩn. Mình được đơn vị vận hành Pulse Active trao chứng nhận ghi nhận đóng góp với vai trò tình nguyện viên.",
+      did: [],
+      photos: [{ src: "images/chung-nhan-hcmc-marathon-2026.jpg", cap: "Chứng nhận tình nguyện viên HCMC Marathon 2026", pos: "center 55%" }] }
+  ],
+
+  contact: [
+    { k: "Email", v: "nhanltm23407e@st.uel.edu.vn", copy: true },
+    { k: "Điện thoại", v: "0985 582 577", copy: true },
+    { k: "Khu vực", v: "TP. Thủ Đức, TP. Hồ Chí Minh" }
+  ]
+};
+/* ================= HẾT PHẦN CẦN SỬA ================= */
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const imgSrc = (v, w = 1000) => !v ? "" : (/[\/.]/.test(v) ? v : `https://drive.google.com/thumbnail?id=${encodeURIComponent(v)}&sz=w${w}`);
+const driveLink = (p) => p.link || (p.file ? `https://drive.google.com/file/d/${encodeURIComponent(p.file)}/view` : "");
+const fallback = (img) => { img.remove(); };
+
+// Hero + badge
+document.title = `Portfolio ${DATA.name}`;
+$("brand").textContent = DATA.name;
+$("h-eyebrow").textContent = `${DATA.major} · ${DATA.schoolShort}`;
+$("h-title").innerHTML = `Xin chào, mình là <span class="hl">${esc(DATA.name)}</span>`;
+$("h-lead").textContent = DATA.lead;
+$("cv-btn").href = DATA.cv;
+$("b-tag").textContent = DATA.badgeTag;
+$("b-name").textContent = DATA.name;
+$("b-sub").textContent = DATA.tagline;
+$("b-avatar").innerHTML = DATA.avatar ? `<img src="${esc(imgSrc(DATA.avatar, 400))}" alt="" onerror="this.parentNode.textContent='${esc(DATA.initials)}'">` : esc(DATA.initials);
+$("b-meta").innerHTML = [["Trường", DATA.schoolShort], ["Ngành", DATA.majorShort], ["Khóa", DATA.year], ["GPA", DATA.gpa]]
+  .map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
+
+// About
+$("about-text").innerHTML = DATA.about.map((p) => `<p>${esc(p)}</p>`).join("") +
+  `<div class="subhead">Kỹ năng</div><div class="chips">${DATA.skills.map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div>` +
+  (DATA.langDetail?.length ? `<div class="subhead">Ngoại ngữ</div><div class="chips">${DATA.langDetail.map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div>` : "");
+$("facts").innerHTML = [["Trường", DATA.schoolShort], ["Ngành", DATA.major], ["Khóa học", DATA.year], ["GPA", DATA.gpa], ["Ngoại ngữ", DATA.languages], ["Dự kiến tốt nghiệp", DATA.gradYear]]
+  .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
+
+// Projects
+const kindClass = (k) => ({ "báo cáo": "t-docs", slide: "t-slides", video: "t-video", pdf: "t-pdf", sheets: "t-sheets" }[String(k).toLowerCase()] || "t-khac");
+const fileUrl = (f) => f.link || `https://drive.google.com/file/d/${encodeURIComponent(f.id)}/view`;
+const types = ["Tất cả", ...new Set(DATA.projects.map((p) => p.group))];
+let activeType = "Tất cả";
+function renderFilters() {
+  if (types.length <= 2) { $("filters").hidden = true; return; }
+  $("filters").innerHTML = types.map((t, i) => `<button type="button" id="f-${i}" aria-pressed="${t === activeType}">${esc(t)}</button>`).join("");
+  $("filters").querySelectorAll("button").forEach((b, i) => b.onclick = () => { activeType = types[i]; renderFilters(); renderProjects(); });
+}
+function renderProjects() {
+  $("projects").innerHTML = DATA.projects.filter((p) => activeType === "Tất cả" || p.group === activeType).map((p) => {
+    const files = (p.files || []).filter((f) => f.id || f.link);
+    const main = files[0];
+    const src = imgSrc(p.thumb, 800);
+    return `<article class="proj">
+      <div class="thumb">
+        <div class="ph"><div class="ph-file">${esc(main ? main.kind : "")}</div></div>
+        ${src ? (main ? `<a href="${esc(fileUrl(main))}" target="_blank" rel="noopener" tabindex="-1" style="position:absolute;inset:0"><img src="${esc(src)}" alt="Trang đầu: ${esc(p.title)}" loading="lazy" onerror="fallback(this)"></a>` : `<img src="${esc(src)}" alt="" loading="lazy" onerror="fallback(this)" style="position:relative">`) : ""}
+        <span class="ftype ${p.group === "Nhân sự" ? "g-hr" : "g-biz"}">${esc(p.group)}</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta">${esc(p.course)} · ${esc(p.date)}</div>
+        <h3>${main ? `<a href="${esc(fileUrl(main))}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}</h3>
+        ${p.role ? `<div class="proj-role">${esc(p.role)}</div>` : ""}
+        <p>${esc(p.desc)}</p>
+        <div class="chips">${(p.tags || []).map((t) => `<span class="chip">${esc(t)}</span>`).join("")}</div>
+        ${files.length ? `<div class="proj-files">${files.map((f) => `<a class="file-btn" href="${esc(fileUrl(f))}" target="_blank" rel="noopener"><span class="dot ${kindClass(f.kind)}"></span>Xem ${esc(f.kind.toLowerCase())} ↗</a>`).join("")}</div>` : ""}
+      </div>
+    </article>`;
+  }).join("");
+}
+renderFilters(); renderProjects();
+
+// Events
+$("events-intro").textContent = DATA.eventsIntro;
+const allPhotos = [];
+$("events").innerHTML = DATA.events.map((e) => {
+  const photos = (e.photos || []).map((raw, i) => {
+    const ph = typeof raw === "string" ? { src: raw } : raw;
+    const idx = allPhotos.push({ src: imgSrc(ph.src, 1600), cap: ph.cap || `${e.name} · ảnh ${i + 1}` }) - 1;
+    const src = imgSrc(ph.src, 600);
+    return `<button class="photo" type="button" data-i="${idx}" aria-label="Xem ảnh ${i + 1} của ${esc(e.name)}">
+      <span class="ph">Ảnh ${i + 1}<br>(thêm ảnh của bạn)</span>
+      ${src ? `<img src="${esc(src)}" alt="${esc(ph.cap || "")}" loading="lazy" onerror="fallback(this)" style="position:relative${ph.pos ? `;object-position:${esc(ph.pos)}` : ""}">` : ""}
+    </button>`;
+  }).join("");
+  return `<article class="event">
+    <div class="stub">${e.month ? `<div class="m">${esc(e.month)}</div>` : ""}<div class="y">${esc(e.year)}</div><div class="r">${esc(e.scale)}</div></div>
+    <div class="event-body">
+      <h3>${esc(e.name)}</h3>
+      <p class="role">Vai trò: ${esc(e.role)}</p>
+      <p class="desc">${esc(e.desc)}</p>
+      ${e.did?.length ? `<ul>${e.did.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}
+      ${photos ? `<div class="photos">${photos}</div>` : ""}
+    </div>
+  </article>`;
+}).join("");
+
+// Lightbox
+let cur = 0;
+const openLb = (i) => {
+  const p = allPhotos[i]; if (!p?.src) return;
+  cur = i; $("lb-img").src = p.src; $("lb-cap").textContent = p.cap; $("lb").hidden = false; $("lb-x").focus();
+};
+const step = (d) => { const withSrc = allPhotos.map((p, i) => p.src ? i : -1).filter((i) => i >= 0); if (!withSrc.length) return; const pos = withSrc.indexOf(cur); openLb(withSrc[(pos + d + withSrc.length) % withSrc.length]); };
+$("events").addEventListener("click", (ev) => { const b = ev.target.closest(".photo"); if (b) openLb(+b.dataset.i); });
+$("lb-x").onclick = () => $("lb").hidden = true;
+$("lb-prev").onclick = () => step(-1);
+$("lb-next").onclick = () => step(1);
+$("lb").addEventListener("click", (ev) => { if (ev.target.id === "lb") $("lb").hidden = true; });
+document.addEventListener("keydown", (ev) => {
+  if ($("lb").hidden) return;
+  if (ev.key === "Escape") $("lb").hidden = true;
+  if (ev.key === "ArrowLeft") step(-1);
+  if (ev.key === "ArrowRight") step(1);
+});
+
+// Contact
+$("contact-list").innerHTML = DATA.contact.map((c, i) => `<div class="contact-row">
+  <div style="min-width:0"><div class="k">${esc(c.k)}</div>${c.href ? `<a class="v" href="${esc(c.href)}" target="_blank" rel="noopener">${esc(c.v)} ↗</a>` : `<div class="v">${esc(c.v)}</div>`}</div>
+  ${c.copy ? `<button class="copy" type="button" id="copy-${i}" data-v="${esc(c.v)}">Sao chép</button>` : ""}
+</div>`).join("");
+$("contact-list").addEventListener("click", async (ev) => {
+  const b = ev.target.closest(".copy"); if (!b) return;
+  try { await navigator.clipboard.writeText(b.dataset.v); b.textContent = "Đã chép"; }
+  catch { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling.querySelector(".v")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Đã chọn, nhấn Ctrl+C"; }
+  setTimeout(() => b.textContent = "Sao chép", 2000);
+});
+
+$("foot").textContent = `© ${new Date().getFullYear()} ${DATA.name} · ${DATA.schoolShort}`;
+</script>
+
+</body>
+</html>
