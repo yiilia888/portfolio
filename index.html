@@ -225,6 +225,15 @@ section.block { position: relative; padding-block: 72px; }
 footer { padding-block: 34px 44px; text-align: center; color: var(--muted); font-size: 14px; }
 footer .script { font-size: 26px; display: block; }
 
+/* Version switch */
+.switch { position: fixed; z-index: 8; right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 10px; padding: 6px 18px 6px 6px; border-radius: 999px; text-decoration: none; color: #FFFFFF; font-family: "Be Vietnam Pro", system-ui, sans-serif; font-weight: 600; font-size: 14px; line-height: 1.2; background: linear-gradient(135deg, #255997, #3C8BC9); box-shadow: 0 10px 24px rgba(37,89,151,.32); transition: transform .2s; }
+.switch:hover { transform: translateY(-3px) rotate(-2deg); }
+.switch-ico { width: 48px; height: 48px; border-radius: 50%; background: #FFFFFF; display: grid; place-items: center; box-shadow: inset 0 0 0 2px #AEDEED; flex-shrink: 0; }
+.switch-ico svg { width: 32px; height: 32px; }
+.switch-label small { display: block; font-weight: 500; font-size: 11px; opacity: .85; }
+.switch[data-icon="crown"] .ico-pine, .switch[data-icon="pineapple"] .ico-crown { display: none; }
+@media (max-width: 560px) { .switch-label { display: none; } .switch { padding: 6px; } }
+
 /* Lightbox */
 .lb { position: fixed; inset: 0; z-index: 20; background: rgba(8,14,28,.9); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
 .lb img { max-width: 100%; max-height: 82vh; border-radius: 12px; }
@@ -243,6 +252,13 @@ footer .script { font-size: 26px; display: block; }
   <symbol id="i-doc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 2h9l5 5v15H6zM14 2v6h6M9 13h8M9 17h6"/></symbol>
   <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 21l4-1 12-12-3-3L4 17zM14 6l3 3"/></symbol>
   <symbol id="i-flag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 22V3m0 1h12l-2 4 2 4H5"/></symbol>
+  <symbol id="pineapple" viewBox="0 0 48 64"><defs><clipPath id="pine-clip"><ellipse cx="24" cy="42" rx="15" ry="20"/></clipPath></defs>
+    <path fill="#7FD39A" d="M24 23C16 19 10 14 8 7c8 2 13 8 16 16z"/><path fill="#7FD39A" d="M24 23c8-4 14-9 16-16-8 2-13 8-16 16z"/>
+    <path fill="#4FAE70" d="M24 23c-5-8-7-14-5-21 4 6 6 13 5 21z"/><path fill="#4FAE70" d="M24 23c2-8 5-14 10-19 0 7-4 13-10 19z"/>
+    <ellipse cx="24" cy="42" rx="15" ry="20" fill="#F7D65A"/>
+    <g clip-path="url(#pine-clip)" stroke="#E0A82E" stroke-width="2"><path d="M0 26l40 40M0 36l30 30M6 22l40 40M16 22l30 30M26 22l20 20M48 26L8 66M48 36L18 66M42 22L2 62M32 22L2 52M22 22L2 42"/></g>
+    <ellipse cx="18" cy="34" rx="3" ry="5" fill="rgba(255,255,255,.45)"/></symbol>
+  <symbol id="crown" viewBox="0 0 64 48"><path fill="#4A6FA5" d="M4 44 2 10l15 14L32 2l15 22 15-14-2 34z"/><path fill="none" stroke="#F7E6B5" stroke-width="2" stroke-dasharray="4 3" d="M9 39 8 19l10 9L32 9l14 19 10-9-1 20z"/><circle cx="32" cy="30" r="5" fill="#D9534F"/></symbol>
 </svg>
 
 <nav class="nav" aria-label="Điều hướng chính">
@@ -343,6 +359,11 @@ footer .script { font-size: 26px; display: block; }
 
 <footer><div class="wrap"><span class="script" id="foot-name"></span><span id="foot"></span></div></footer>
 
+<a class="switch" id="switch" href="scrapbook.html" data-icon="crown" aria-label="Chuyển sang bản scrapbook">
+  <span class="switch-ico" aria-hidden="true"><svg class="ico-crown" viewBox="0 0 64 48"><use href="#crown"/></svg><svg class="ico-pine" viewBox="0 0 48 64"><use href="#pineapple"/></svg></span>
+  <span class="switch-label">Bản scrapbook<small>đổi phong cách</small></span>
+</a>
+
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh">
   <button class="x" id="lb-x" aria-label="Đóng">×</button>
   <button class="prev" id="lb-prev" aria-label="Ảnh trước">‹</button>
@@ -380,6 +401,7 @@ const DATA = {
     { num: "3", unit: "", label: "sự kiện lớn năm 2026" }
   ],
   schoolShort: "UEL · ĐHQG-HCM",
+  switchIcon: "crown",                 // icon nút chuyển sang bản scrapbook: "crown" (vương miện jean) hoặc "pineapple" (trái thơm)
   cv: "https://drive.google.com/file/d/16zwjFPjY6ZQ_beMbskQ0G_kHwqD80gsb/view",  // CV C&B Intern trên Drive (ai có link đều xem được)
 
   polaroids: [
@@ -473,6 +495,7 @@ $("h-pills").innerHTML = DATA.heroPills.map((p) => `<span class="pill"><svg aria
 $("h-photo").src = imgSrc(DATA.photo, 800);
 DATA.floatTags.forEach((t, i) => { $("tag" + (i + 1)).innerHTML = `${esc(t)} ${star}`; });
 $("cv-btn").href = DATA.cv; $("cv-nav").href = DATA.cv;
+$("switch").dataset.icon = DATA.switchIcon || "crown";
 $("stats").innerHTML = DATA.stats.map((s) => `<div class="stat"><b>${esc(s.num)}${s.unit ? `<small>${esc(s.unit)}</small>` : ""}</b><span>${esc(s.label)}</span></div>`).join("");
 
 // About
