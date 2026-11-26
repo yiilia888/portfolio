@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Minh Nhàn Scrapbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio Minh Nhàn, phiên bản scrapbook denim: giới thiệu, dự án tại UEL và hoạt động sự kiện.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Patrick+Hand&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: scrapbook on dotted paper. Denim-lettered name + stitched patches, sewing buttons, washi tape and a bandana-framed portrait; same sections as the main portfolio on one 1140px column. Deliberately single light theme (paper). */
+:root {
+  --paper: #FBF8F1;
+  --paper-2: #F3EDE0;
+  --card: #FFFFFF;
+  --ink: #24324A;
+  --muted: #5A6478;
+  --denim: #4A6FA5;
+  --denim-dark: #2F4A78;
+  --denim-light: #8FAAD3;
+  --chambray: #DCE6F4;
+  --thread: #F7E6B5;
+  --pink: #F49AB4;
+  --pink-soft: #FCE3EA;
+  --yellow: #F7D65A;
+  --yellow-soft: #FDF3C8;
+  --green: #A3D9B1;
+  --green-soft: #E2F3E6;
+  --purple: #BBA7EC;
+  --red: #D9534F;
+  --sky: #BFDDF2;
+  --shadow: 0 2px 3px rgba(36,50,74,.08), 0 10px 24px rgba(36,50,74,.10);
+  --f-puff: "Baloo 2", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --f-hand: "Patrick Hand", "Comic Sans MS", cursive;
+  --f-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--sky) 1.3px, transparent 1.7px);
+  background-size: 26px 26px;
+}
+a { color: inherit; }
+img { max-width: 100%; }
+:focus-visible { outline: 3px dashed var(--denim); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+.wrap { max-width: 1140px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.hand { font-family: var(--f-hand); }
+
+/* ---------- materials ---------- */
+.denim {
+  background-color: var(--denim);
+  background-image:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 2px, transparent 2px 5px),
+    repeating-linear-gradient(45deg, rgba(0,0,0,.07) 0 1px, transparent 1px 4px),
+    radial-gradient(120% 90% at 30% 20%, rgba(255,255,255,.12), transparent 60%);
+}
+.stitch { position: relative; }
+.stitch::after { content: ""; position: absolute; inset: 7px; border: 2px dashed var(--thread); border-radius: inherit; pointer-events: none; }
+.stitch-blue::after { border-color: var(--denim-light); }
+.gingham {
+  background-color: #FFFFFF;
+  background-image: linear-gradient(90deg, rgba(126,170,214,.45) 50%, transparent 50%), linear-gradient(rgba(126,170,214,.45) 50%, transparent 50%);
+  background-size: 16px 16px;
+}
+.tape { position: absolute; z-index: 3; width: 96px; height: 26px; opacity: .88; background: repeating-linear-gradient(90deg, rgba(255,255,255,.45) 0 6px, transparent 6px 12px), var(--tc, var(--sky)); clip-path: polygon(4% 0, 96% 0, 100% 30%, 97% 60%, 100% 100%, 4% 100%, 0 70%, 3% 40%); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+
+/* sewing buttons */
+.sew { position: absolute; width: var(--s, 40px); height: var(--s, 40px); border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.65), transparent 42%), var(--c, var(--yellow));
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.12), inset 0 0 0 calc(var(--s, 40px) * .11) rgba(255,255,255,.28), 0 3px 6px rgba(36,50,74,.22); animation: wobble 7s ease-in-out infinite; }
+.sew::before { content: ""; position: absolute; inset: 31%; background: radial-gradient(circle, rgba(0,0,0,.38) 22%, transparent 26%) 0 0 / 50% 50%; }
+.sew::after { content: ""; position: absolute; inset: 33%;
+  background: linear-gradient(45deg, transparent 44%, rgba(255,255,255,.95) 44% 56%, transparent 56%), linear-gradient(-45deg, transparent 44%, rgba(255,255,255,.95) 44% 56%, transparent 56%); }
+.heart-btn { position: absolute; width: var(--s, 70px); pointer-events: none; filter: drop-shadow(0 4px 6px rgba(36,50,74,.2)); animation: wobble 8s ease-in-out infinite; }
+@keyframes wobble { 0%,100% { transform: rotate(-6deg) translateY(0); } 50% { transform: rotate(6deg) translateY(-6px); } }
+.deco { position: absolute; pointer-events: none; }
+.deco.drop { color: var(--denim-light); width: 14px; height: 18px; }
+.deco.spark { color: var(--yellow); width: 20px; height: 20px; }
+.deco.cloud { color: var(--pink); width: 90px; height: 48px; }
+
+/* denim lettering */
+.puff { font-family: var(--f-puff); font-weight: 800; line-height: .92; letter-spacing: -.01em; color: transparent;
+  background-color: var(--denim);
+  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.16) 0 2px, transparent 2px 5px), linear-gradient(180deg, #6A8FC4, #3E5F92);
+  -webkit-background-clip: text; background-clip: text;
+  filter: drop-shadow(0 2px 0 #FFFFFF) drop-shadow(0 4px 0 var(--denim-dark)) drop-shadow(0 10px 12px rgba(36,50,74,.22)); }
+
+/* ---------- nav ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(8px); }
+.nav::after { content: ""; display: block; height: 8px; background-color: #fff; background-image: linear-gradient(90deg, rgba(126,170,214,.5) 50%, transparent 50%), linear-gradient(rgba(126,170,214,.5) 50%, transparent 50%); background-size: 8px 8px; }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 62px; }
+.logo { text-decoration: none; font-size: 30px; }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a { font-family: var(--f-hand); font-size: 20px; text-decoration: none; color: var(--ink); padding: 2px 12px; border-radius: 999px; }
+.nav-links a:hover { background: var(--yellow-soft); }
+.nav-cta { font-family: var(--f-puff); font-weight: 700; font-size: 15px; color: #fff; text-decoration: none; padding: 9px 18px; border-radius: 12px; white-space: nowrap; }
+@media (max-width: 760px) { .nav-links { display: none; } }
+
+/* ---------- hero ---------- */
+.hero { position: relative; overflow-x: clip; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; padding-block: 54px 64px; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; gap: 56px; padding-block: 36px 48px; } }
+.torn { display: inline-block; background: var(--card); font-family: var(--f-puff); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--denim-dark); padding: 8px 16px; transform: rotate(-2deg);
+  clip-path: polygon(0 8%, 6% 0, 14% 6%, 24% 0, 36% 5%, 48% 0, 60% 6%, 72% 0, 84% 5%, 94% 0, 100% 8%, 98% 50%, 100% 92%, 92% 100%, 80% 95%, 68% 100%, 56% 94%, 44% 100%, 32% 95%, 20% 100%, 8% 94%, 0 100%, 2% 50%); box-shadow: var(--shadow); }
+.hello { font-family: var(--f-hand); font-size: clamp(26px, 3vw, 32px); color: var(--denim-dark); margin: 18px 0 26px; }
+.name-wrap { position: relative; display: inline-block; margin: 2px 0 20px; }
+.name { font-size: clamp(84px, 13vw, 156px); margin: 0; }
+.name-wrap .crown { position: absolute; width: clamp(46px, 6vw, 70px); left: -10px; top: -26px; transform: rotate(-16deg); filter: drop-shadow(0 3px 3px rgba(36,50,74,.25)); }
+.note { position: relative; background: var(--card); padding: 22px 22px 18px; max-width: 520px; box-shadow: var(--shadow); transform: rotate(-.6deg); margin-bottom: 24px;
+  background-image: repeating-linear-gradient(transparent 0 27px, rgba(126,170,214,.25) 27px 28px); }
+.note .tape { top: -12px; left: 40%; --tc: var(--pink); }
+.note p { margin: 0; font-size: 17px; line-height: 28px; color: var(--ink); }
+.note strong { color: var(--denim-dark); }
+.labels { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.label { position: relative; background: var(--card); border: 2px solid var(--denim-light); border-radius: 8px; padding: 4px 14px 4px 12px; font-family: var(--f-hand); font-size: 19px; color: var(--denim-dark); box-shadow: 0 2px 0 var(--chambray); }
+.label::after { content: ""; position: absolute; inset: 3px; border: 1.5px dashed var(--denim-light); border-radius: 5px; pointer-events: none; }
+.label:nth-child(4n+1) { background: var(--yellow-soft); } .label:nth-child(4n+2) { background: var(--pink-soft); } .label:nth-child(4n+3) { background: var(--green-soft); } .label:nth-child(4n+4) { background: var(--chambray); }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--f-puff); font-weight: 700; font-size: 17px; padding: 13px 22px; border-radius: 14px; transition: transform .15s; }
+.btn:hover { transform: translateY(-2px) rotate(-1deg); }
+.btn-denim { color: #fff; box-shadow: 0 4px 0 var(--denim-dark), var(--shadow); }
+.btn-denim.stitch::after { inset: 4px; border-radius: 10px; }
+.btn-paper { color: var(--denim-dark); background: var(--card); border: 2px solid var(--denim-light); box-shadow: 0 4px 0 var(--chambray); }
+
+.board { position: relative; width: min(470px, 100%); margin: 0 auto; }
+.bandana { position: relative; background: #FFFFFF; aspect-ratio: 1; padding: 34px; transform: rotate(3deg); box-shadow: 0 4px 8px rgba(36,50,74,.10), 0 22px 40px rgba(36,50,74,.16); border-radius: 4px; }
+.bandana::before { content: ""; position: absolute; inset: 10px; border: 12px solid transparent; border-image: repeating-linear-gradient(90deg, var(--denim) 0 5px, #FFFFFF 5px 9px) 12; pointer-events: none; }
+.bandana::after { content: ""; position: absolute; inset: 28px; border: 2px solid var(--yellow); pointer-events: none; }
+.bandana .photo-in { width: 100%; height: 100%; overflow: hidden; border-radius: 2px; background: var(--chambray); }
+.bandana img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; display: block; }
+.hang { position: absolute; z-index: 4; background: var(--paper-2); font-family: var(--f-hand); font-size: 20px; color: var(--denim-dark); padding: 6px 16px 6px 26px; clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%); box-shadow: var(--shadow); white-space: nowrap; }
+.hang::before { content: ""; position: absolute; left: 12px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 1.5px var(--denim-light); }
+.hang.h1 { top: 8%; left: -8%; transform: rotate(-8deg); background: var(--yellow-soft); }
+.hang.h2 { top: 46%; right: -9%; transform: rotate(7deg); background: var(--pink-soft); }
+.hang.h3 { bottom: 4%; left: -4%; transform: rotate(-4deg); background: var(--green-soft); }
+@media (max-width: 520px) { .hang.h1 { left: -2%; } .hang.h2 { right: -2%; } .hang.h3 { left: 0; } .hang { font-size: 17px; } }
+.scribble { position: absolute; font-family: var(--f-hand); font-size: 17px; color: var(--muted); line-height: 1.2; }
+
+.gingham-band { height: 26px; }
+
+/* ---------- stats ---------- */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding-block: 40px 10px; }
+@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+.patch { position: relative; border-radius: 16px; padding: 22px 16px 18px; text-align: center; box-shadow: var(--shadow); }
+.patch::after { content: ""; position: absolute; inset: 7px; border: 2px dashed rgba(74,111,165,.45); border-radius: 11px; pointer-events: none; }
+.patch:nth-child(1) { background: var(--chambray); transform: rotate(-1.5deg); } .patch:nth-child(2) { background: var(--pink-soft); transform: rotate(1deg); }
+.patch:nth-child(3) { background: var(--yellow-soft); transform: rotate(-.8deg); } .patch:nth-child(4) { background: var(--green-soft); transform: rotate(1.4deg); }
+.patch b { display: block; font-family: var(--f-puff); font-weight: 800; font-size: clamp(34px, 4vw, 46px); line-height: 1; color: var(--denim-dark); font-variant-numeric: tabular-nums; }
+.patch b small { font-size: .45em; color: var(--muted); }
+.patch span { display: block; font-family: var(--f-hand); font-size: 19px; color: var(--ink); margin-top: 6px; }
+.patch .sew { --s: 26px; top: -10px; right: -8px; }
+
+/* ---------- sections ---------- */
+section.block { position: relative; padding-block: 76px; overflow-x: clip; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 18px; flex-wrap: wrap; margin-bottom: 38px; }
+.sec-head .kicker { font-family: var(--f-hand); font-size: 24px; color: var(--denim-dark); }
+h2.puff { font-size: clamp(42px, 6vw, 68px); margin: 2px 0 0; }
+.sec-head p { margin: 0; max-width: 30em; color: var(--muted); }
+
+/* about */
+.about { display: grid; grid-template-columns: .95fr 1.05fr; gap: 60px; align-items: center; }
+@media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 34px; } }
+.stack { position: relative; height: 480px; max-width: 470px; width: 100%; margin: 0 auto; }
+@media (max-width: 480px) { .stack { height: 390px; } }
+.pol { position: absolute; width: 52%; margin: 0; background: #fff; padding: 10px 10px 0; box-shadow: var(--shadow); transition: transform .25s; }
+.pol img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.pol figcaption { font-family: var(--f-hand); font-size: 22px; color: var(--denim-dark); text-align: center; padding: 6px 0 10px; }
+.pol .tape { top: -12px; left: 50%; margin-left: -48px; }
+.pol.p1 { left: 0; top: 50px; transform: rotate(-7deg); } .pol.p1 .tape { --tc: var(--yellow); }
+.pol.p2 { left: 26%; top: 0; transform: rotate(3deg); z-index: 2; } .pol.p2 .tape { --tc: var(--pink); }
+.pol.p3 { left: 48%; top: 78px; transform: rotate(9deg); z-index: 1; } .pol.p3 .tape { --tc: var(--green); }
+.pol:hover { transform: rotate(0) scale(1.03); z-index: 4; }
+.about-title { font-family: var(--f-puff); font-weight: 800; font-size: clamp(32px, 4.2vw, 46px); line-height: 1.1; color: var(--denim-dark); margin: 4px 0 6px; text-wrap: balance; }
+.about-title em { font-style: normal; font-family: var(--f-hand); font-weight: 400; color: var(--red); display: inline-block; transform: rotate(-2deg); }
+.about-body p { margin: 14px 0 0; max-width: 60ch; }
+.goals { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 26px; }
+@media (max-width: 480px) { .goals { grid-template-columns: 1fr; } }
+.goal { position: relative; background: var(--card); padding: 14px 16px 14px 30px; box-shadow: var(--shadow); clip-path: polygon(16px 0, 100% 0, 100% 100%, 16px 100%, 0 50%); }
+.goal::before { content: ""; position: absolute; left: 13px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 1.5px var(--denim-light); }
+.goal:nth-child(1) { background: var(--yellow-soft); } .goal:nth-child(2) { background: var(--chambray); }
+.goal small { display: block; font-family: var(--f-hand); font-size: 18px; color: var(--muted); }
+.goal b { display: block; color: var(--denim-dark); font-size: 16px; line-height: 1.4; }
+.chip-group { margin-top: 22px; }
+.chip-group > span { display: block; font-family: var(--f-hand); font-size: 20px; color: var(--muted); margin-bottom: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: var(--card); border: 1.5px dashed var(--denim-light); color: var(--denim-dark); }
+.chip.solid { color: #fff; border: 0; padding: 6px 13px; background-color: var(--denim); background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 2px, transparent 2px 5px); }
+
+/* projects */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font-family: var(--f-hand); font-size: 19px; padding: 3px 16px; border-radius: 999px; border: 2px solid var(--denim-light); background: var(--card); color: var(--denim-dark); cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--denim); color: #fff; border-color: var(--denim); }
+.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 34px 26px; }
+.proj { position: relative; background: var(--card); padding: 12px; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .2s; }
+.proj:nth-child(odd) { transform: rotate(-.7deg); } .proj:nth-child(even) { transform: rotate(.7deg); }
+.proj:hover { transform: rotate(0) translateY(-4px); }
+.proj .tape { top: -13px; left: 50%; margin-left: -48px; }
+.proj:nth-child(3n+1) .tape { --tc: var(--sky); } .proj:nth-child(3n+2) .tape { --tc: var(--pink); } .proj:nth-child(3n+3) .tape { --tc: var(--yellow); }
+.thumb { aspect-ratio: 16 / 9; max-width: 100%; position: relative; background: var(--chambray); overflow: hidden; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.thumb .ph { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-hand); color: var(--muted); }
+.woven { position: absolute; z-index: 1; bottom: 10px; left: 10px; font-family: var(--f-hand); font-size: 16px; padding: 2px 12px; border-radius: 4px; color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.18); }
+.woven::after { content: ""; position: absolute; inset: 2px; border: 1px dashed rgba(255,255,255,.7); border-radius: 3px; }
+.woven.g-hr { background: var(--denim); } .woven.g-biz { background: #D9708E; }
+.proj-body { padding: 14px 8px 8px; display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
+.proj-meta { font-family: var(--f-hand); font-size: 17px; color: var(--muted); }
+.proj h3 { font-family: var(--f-puff); font-weight: 700; font-size: 21px; line-height: 1.25; color: var(--denim-dark); margin: 0; }
+.proj h3 a { text-decoration: none; }
+.proj h3 a:hover { text-decoration: underline wavy var(--pink); text-underline-offset: 4px; }
+.proj-role { font-family: var(--f-hand); font-size: 19px; color: var(--red); }
+.proj p { margin: 0; color: var(--muted); font-size: 15px; }
+.proj .chips { margin-top: auto; padding-top: 6px; }
+.proj-files { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 12px; margin-top: 2px; border-top: 2px dashed var(--chambray); }
+.file-btn { position: relative; display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-puff); font-weight: 700; font-size: 15px; text-decoration: none; color: #fff; padding: 7px 15px; border-radius: 10px; box-shadow: 0 3px 0 var(--denim-dark); }
+.file-btn::after { content: ""; position: absolute; inset: 3px; border: 1.5px dashed var(--thread); border-radius: 7px; pointer-events: none; }
+.file-btn:hover { transform: translateY(-1px); }
+
+/* events */
+.events { display: flex; flex-direction: column; gap: 34px; }
+.event { display: grid; grid-template-columns: 160px 1fr; gap: 28px; }
+@media (max-width: 680px) { .event { grid-template-columns: 1fr; gap: 14px; } }
+.stub { align-self: start; border-radius: 14px; padding: 18px 16px 16px; color: #fff; text-align: center; box-shadow: 0 4px 0 var(--denim-dark), var(--shadow); transform: rotate(-2deg); }
+.stub.stitch::after { inset: 6px; border-radius: 9px; }
+.event:nth-child(even) .stub { transform: rotate(2deg); }
+.stub .m { font-family: var(--f-hand); font-size: 20px; color: var(--thread); }
+.stub .y { font-family: var(--f-puff); font-weight: 800; font-size: 40px; line-height: 1; }
+.stub .r { font-family: var(--f-hand); font-size: 17px; margin-top: 8px; color: var(--thread); }
+@media (max-width: 680px) { .stub { display: flex; gap: 12px; align-items: baseline; justify-content: center; flex-wrap: wrap; transform: none !important; } .stub .y { font-size: 28px; } .stub .r { margin: 0; } }
+.event-card { position: relative; background: var(--card); padding: 22px 24px; box-shadow: var(--shadow); min-width: 0; }
+.event-card .tape { top: -12px; right: 24px; --tc: var(--green); transform: rotate(4deg); }
+.event h3 { font-family: var(--f-puff); font-weight: 800; font-size: 24px; line-height: 1.2; color: var(--denim-dark); margin: 0 0 4px; }
+.event .role { font-family: var(--f-hand); font-size: 20px; color: var(--red); margin: 0 0 8px; }
+.event p.desc { margin: 0 0 10px; max-width: 64ch; }
+.event ul { margin: 0 0 16px; padding-left: 20px; color: var(--muted); }
+.photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 680px) { .photos { grid-template-columns: repeat(2, 1fr); } }
+.photo { aspect-ratio: 4 / 3; max-width: 100%; background: #fff; border: 0; padding: 6px; cursor: zoom-in; position: relative; box-shadow: var(--shadow); transition: transform .2s; }
+.photo:nth-child(odd) { transform: rotate(-2deg); } .photo:nth-child(even) { transform: rotate(2deg); }
+.photo:hover { transform: rotate(0) scale(1.04); z-index: 2; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo .ph { position: absolute; inset: 6px; display: grid; place-items: center; font-family: var(--f-hand); color: var(--muted); background: var(--chambray); }
+
+/* contact */
+.contact { position: relative; border-radius: 26px; padding: 54px clamp(26px, 5vw, 62px); display: grid; grid-template-columns: 1.15fr 1fr; gap: 34px; align-items: center; color: #fff; box-shadow: 0 6px 0 var(--denim-dark), var(--shadow); }
+.contact.stitch::after { inset: 10px; border-radius: 18px; }
+@media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+.contact .kicker { font-family: var(--f-hand); font-size: 24px; color: var(--thread); }
+.contact h2 { font-family: var(--f-puff); font-weight: 800; font-size: clamp(34px, 4.6vw, 52px); line-height: 1.05; margin: 2px 0 12px; color: var(--thread); text-shadow: 0 3px 0 var(--denim-dark); }
+.contact p { margin: 0; color: #E8EEF8; }
+.contact-list { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; }
+.contact-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--paper); color: var(--ink); padding: 10px 14px; border-radius: 6px; box-shadow: 0 3px 0 rgba(0,0,0,.15); min-width: 0; }
+.contact-row:nth-child(1) { transform: rotate(-1deg); } .contact-row:nth-child(2) { transform: rotate(.8deg); } .contact-row:nth-child(3) { transform: rotate(-.5deg); }
+.contact-row .k { font-family: var(--f-hand); font-size: 17px; color: var(--muted); }
+.contact-row .v { font-weight: 600; overflow-wrap: anywhere; user-select: all; }
+.copy { font-family: var(--f-puff); font-weight: 700; font-size: 14px; background: var(--pink); color: #fff; border: 0; padding: 7px 14px; border-radius: 999px; cursor: pointer; flex-shrink: 0; box-shadow: 0 2px 0 #C9637F; }
+.contact .sew { z-index: 2; }
+footer .gingham { height: 22px; }
+footer .wrap { padding-block: 26px 40px; text-align: center; color: var(--muted); }
+footer .hand { font-size: 22px; color: var(--denim-dark); display: block; }
+
+/* lightbox */
+.lb { position: fixed; inset: 0; z-index: 20; background: rgba(20,28,44,.9); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb img { max-width: 100%; max-height: 80vh; border: 8px solid #fff; }
+.lb figcaption { color: #F4F0E6; text-align: center; margin-top: 12px; font-family: var(--f-hand); font-size: 20px; }
+.lb button { position: absolute; background: rgba(255,255,255,.16); color: #fff; border: 0; width: 44px; height: 44px; border-radius: 50%; font-size: 22px; cursor: pointer; }
+.lb .x { top: calc(16px + env(safe-area-inset-top, 0px)); right: calc(16px + env(safe-area-inset-right, 0px)); }
+.lb .prev { left: calc(16px + env(safe-area-inset-left, 0px)); top: 50%; }
+.lb .next { right: calc(16px + env(safe-area-inset-right, 0px)); top: 50%; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="drop" viewBox="0 0 14 18"><path fill="currentColor" d="M7 0C5 5 0 9 0 12.5A7 7 0 0 0 14 12.5C14 9 9 5 7 0z"/></symbol>
+  <symbol id="spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></symbol>
+  <symbol id="cloud-o" viewBox="0 0 90 48"><path fill="#FFFFFF" stroke="currentColor" stroke-width="3" stroke-linejoin="round" d="M20 44h52a14 14 0 0 0 2-28 18 18 0 0 0-33-7 13 13 0 0 0-20 11 12 12 0 0 0-1 24z"/></symbol>
+  <symbol id="heart" viewBox="0 0 100 92"><path fill="#F49AB4" d="M50 90C20 68 2 52 2 30 2 14 14 2 29 2c9 0 16 4 21 11C55 6 62 2 71 2c15 0 27 12 27 28 0 22-18 38-48 60z"/><path fill="none" stroke="rgba(255,255,255,.55)" stroke-width="4" d="M50 80C25 61 12 49 12 31c0-11 8-19 18-19 8 0 14 5 20 13 6-8 12-13 20-13 10 0 18 8 18 19 0 18-13 30-38 49z"/><rect x="34" y="40" width="32" height="10" rx="5" fill="#C9637F"/></symbol>
+  <symbol id="crown" viewBox="0 0 64 48"><path fill="#4A6FA5" d="M4 44 2 10l15 14L32 2l15 22 15-14-2 34z"/><path fill="none" stroke="#F7E6B5" stroke-width="2" stroke-dasharray="4 3" d="M9 39 8 19l10 9L32 9l14 19 10-9-1 20z"/><circle cx="32" cy="30" r="5" fill="#D9534F"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="Điều hướng chính">
+  <div class="wrap">
+    <a class="logo puff" href="#top" id="brand">Minh Nhàn</a>
+    <div class="nav-links">
+      <a href="#ve-minh">Về mình</a>
+      <a href="#du-an">Dự án</a>
+      <a href="#su-kien">Hoạt động</a>
+      <a href="#lien-he">Liên hệ</a>
+    </div>
+    <a class="nav-cta denim" id="cv-nav" target="_blank" rel="noopener">Xem CV ↗</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="heart-btn" style="--s:76px;left:2%;top:46%" aria-hidden="true" viewBox="0 0 100 92"><use href="#heart"/></svg>
+  <span class="sew" style="--c:var(--purple);--s:38px;left:44%;top:6%" aria-hidden="true"></span>
+  <span class="sew" style="--c:var(--green);--s:54px;right:3%;top:4%;animation-delay:-2s" aria-hidden="true"></span>
+  <span class="sew" style="--c:var(--yellow);--s:44px;left:46%;bottom:10%;animation-delay:-4s" aria-hidden="true"></span>
+  <svg class="deco cloud" style="left:34%;top:30px" aria-hidden="true"><use href="#cloud-o"/></svg>
+  <svg class="deco drop" style="left:8%;top:12%" aria-hidden="true"><use href="#drop"/></svg>
+  <svg class="deco drop" style="left:40%;top:42%" aria-hidden="true"><use href="#drop"/></svg>
+  <svg class="deco drop" style="right:12%;bottom:8%" aria-hidden="true"><use href="#drop"/></svg>
+  <svg class="deco spark" style="left:30%;bottom:14%" aria-hidden="true"><use href="#spark"/></svg>
+  <svg class="deco spark" style="right:6%;top:38%;width:14px;height:14px" aria-hidden="true"><use href="#spark"/></svg>
+  <div class="wrap">
+    <div>
+      <span class="torn">Portfolio · 2026</span>
+      <p class="hello">Xin chào, mình là</p>
+      <div class="name-wrap">
+        <svg class="crown" viewBox="0 0 64 48" aria-hidden="true"><use href="#crown"/></svg>
+        <h1 class="puff name" id="h-name"></h1>
+      </div>
+      <div class="note"><span class="tape" aria-hidden="true"></span><p id="h-lead"></p></div>
+      <div class="labels" id="h-pills"></div>
+      <div class="actions">
+        <a class="btn btn-denim denim stitch" href="#du-an">Xem dự án</a>
+        <a class="btn btn-paper" href="#ve-minh">Về mình ↓</a>
+        <a class="btn btn-paper" id="cv-btn" target="_blank" rel="noopener">Xem CV ↗</a>
+      </div>
+    </div>
+    <div class="board" aria-hidden="true">
+      <div class="bandana"><div class="photo-in"><img id="h-photo" alt=""></div></div>
+      <span class="hang h1" id="tag1"></span>
+      <span class="hang h2" id="tag2"></span>
+      <span class="hang h3" id="tag3"></span>
+      <span class="sew" style="--c:#E86A6A;--s:30px;right:6%;top:-14px;z-index:5"></span>
+      <span class="sew" style="--c:var(--sky);--s:34px;left:44%;bottom:-16px;z-index:5;animation-delay:-3s"></span>
+    </div>
+  </div>
+</header>
+
+<div class="gingham gingham-band" aria-hidden="true"></div>
+
+<div class="wrap"><div class="stats" id="stats"></div></div>
+
+<main>
+  <section class="block" id="ve-minh">
+    <svg class="deco cloud" style="right:6%;top:40px" aria-hidden="true"><use href="#cloud-o"/></svg>
+    <div class="wrap about">
+      <div class="stack" id="stack"></div>
+      <div class="about-body">
+        <div class="hand" style="font-size:24px;color:var(--denim-dark)">Về mình</div>
+        <h2 class="about-title" id="about-title"></h2>
+        <div id="about-text"></div>
+        <div class="goals" id="goals"></div>
+        <div id="chip-groups"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="du-an">
+    <span class="sew" style="--c:var(--pink);--s:40px;left:2%;top:60px" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="kicker">Dự án tại UEL</div><h2 class="puff">Mình đã làm</h2></div>
+        <div class="filters" id="filters" role="group" aria-label="Lọc dự án theo nhóm"></div>
+      </div>
+      <div class="projects" id="projects"></div>
+    </div>
+  </section>
+
+  <div class="gingham gingham-band" aria-hidden="true"></div>
+
+  <section class="block" id="su-kien">
+    <svg class="deco spark" style="right:10%;top:70px" aria-hidden="true"><use href="#spark"/></svg>
+    <svg class="deco drop" style="left:6%;top:120px" aria-hidden="true"><use href="#drop"/></svg>
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="kicker">Ngoài giờ học</div><h2 class="puff">Chạy sự kiện</h2></div>
+        <p id="events-intro"></p>
+      </div>
+      <div class="events" id="events"></div>
+    </div>
+  </section>
+
+  <section class="block" id="lien-he">
+    <div class="wrap">
+      <div class="contact denim stitch">
+        <span class="sew" style="--c:var(--yellow);--s:44px;left:-14px;top:-14px"></span>
+        <span class="sew" style="--c:var(--green);--s:34px;right:22px;bottom:-14px;animation-delay:-3s"></span>
+        <svg class="heart-btn" style="--s:58px;right:-14px;top:-24px;z-index:2" aria-hidden="true" viewBox="0 0 100 92"><use href="#heart"/></svg>
+        <div style="position:relative;z-index:1">
+          <div class="kicker">Liên hệ</div>
+          <h2>Cùng làm việc với mình nhé!</h2>
+          <p>Mình đang tìm cơ hội thực tập ở vị trí C&amp;B. Anh/chị có thể liên hệ qua email hoặc điện thoại bên cạnh.</p>
+        </div>
+        <div class="contact-list" id="contact-list"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="gingham" aria-hidden="true"></div>
+  <div class="wrap"><span class="hand" id="foot-name"></span><span id="foot"></span></div>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh">
+  <button class="x" id="lb-x" aria-label="Đóng">×</button>
+  <button class="prev" id="lb-prev" aria-label="Ảnh trước">‹</button>
+  <figure style="margin:0"><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+  <button class="next" id="lb-next" aria-label="Ảnh sau">›</button>
+</div>
+
+<script>
+/* ==========================================================
+   SỬA NỘI DUNG CỦA BẠN Ở ĐÂY
+   ----------------------------------------------------------
+   Ảnh / file có thể là:
+   1) ID file Google Drive, ví dụ "1AbCdEfGhIjKlMnOp"
+      (lấy trong link drive.google.com/file/d/<ID>/view,
+       và nhớ bật chia sẻ "Bất kỳ ai có đường liên kết")
+   2) Đường dẫn ảnh trong thư mục, ví dụ "images/su-kien-1.jpg"
+   Để trống "" thì trang hiện ô giữ chỗ.
+   ========================================================== */
+const DATA = {
+  name: "Minh Nhàn",
+  nameParts: ["Minh", "Nhàn"],          // dòng 1 chữ đứng, dòng 2 chữ nghiêng
+  photo: "images/avatar.jpg",           // ảnh chân dung tròn ở đầu trang
+  lead: "Sinh viên năm 4 ngành <strong>Quản trị Kinh doanh</strong> tại UEL, ứng tuyển <strong>Thực tập sinh C&B</strong>: hỗ trợ chấm công, cập nhật hồ sơ nhân viên và thủ tục bảo hiểm xã hội một cách chính xác, đúng quy định.",
+  heroPills: [
+    { icon: "i-chart", text: "Phân tích nhân sự" },
+    { icon: "i-doc", text: "Tin học văn phòng" },
+    { icon: "i-pen", text: "Thiết kế" },
+    { icon: "i-flag", text: "Tổ chức sự kiện" }
+  ],
+  floatTags: ["Tuyển dụng → Giữ chân", "C&B Intern", "GPA 8.2/10"],
+  stats: [
+    { num: "8.2", unit: "/10", label: "GPA" },
+    { num: "815", unit: "", label: "TOEIC Nghe – Đọc" },
+    { num: "7", unit: "", label: "dự án tại UEL" },
+    { num: "3", unit: "", label: "sự kiện lớn năm 2026" }
+  ],
+  schoolShort: "UEL · ĐHQG-HCM",
+  cv: "https://drive.google.com/file/d/16zwjFPjY6ZQ_beMbskQ0G_kHwqD80gsb/view",  // CV C&B Intern trên Drive (ai có link đều xem được)
+
+  polaroids: [
+    { src: "images/avatar.jpg", cap: "Minh Nhàn", pos: "center 20%" },
+    { src: "images/vnexpress-marathon-2026-ca-nhan.jpg", cap: "Volunteer", pos: "center 40%" },
+    { src: "images/atvncg-2026-ca-nhan.jpg", cap: "Operation", pos: "center 50%" }
+  ],
+  aboutTitle: "Đằng sau mỗi con số <em>là một con người</em>",
+  about: [
+    "Mình là Minh Nhàn, sinh viên ngành Quản trị Kinh doanh tại Trường Đại học Kinh tế – Luật, ĐHQG-HCM (khóa 2023 – 2027). Với mình, bảng chấm công hay bảng lương không chỉ là dữ liệu: mỗi dòng là thu nhập và quyền lợi của một người, nên cần chính xác và rõ ràng.",
+    "Qua các đề tài về quản trị nhân sự chiến lược tại Vinamilk và hành vi tổ chức tại VietJet Air, mình làm quen với cách phân tích dữ liệu nhân sự và đề xuất giải pháp. Ngoài giờ học, mình tham gia vận hành các sự kiện lớn, nơi mình học cách làm việc dưới áp lực và phối hợp với nhiều người."
+  ],
+  goals: [
+    { label: "Mục tiêu ngắn hạn", text: "Thực tập sinh C&B / Hành chính nhân sự" },
+    { label: "Mục tiêu dài hạn", text: "Chuyên viên C&B" }
+  ],
+  skills: ["Làm việc nhóm", "Quản lý thời gian", "Tin học văn phòng", "Thiết kế", "Phân tích nhân sự"],
+  langDetail: ["TOEIC Nghe – Đọc 815/990", "TOEIC Nói – Viết 280/400", "HSK 3"],
+
+  // group: nhóm để lọc · files: các file trên Google Drive (kind: Báo cáo / Slide / Video, id: ID file Drive)
+  projects: [
+    { title: "Quản trị nhân sự chiến lược & tuyển dụng: Vinamilk", group: "Nhân sự", course: "Quản trị nguồn nhân lực", date: "04/2026 – 06/2026", role: "Trưởng nhóm",
+      desc: "Phân tích khung thu hút và giữ chân nhân tài trên hơn 10.500 nhân viên, đối chiếu với các mô hình Quản trị nhân sự chiến lược. Đề xuất 3 kế hoạch hành động SMART, trong đó có hoạch định nhân lực dự báo nhằm rút ngắn 20% thời gian tuyển cho các vị trí then chốt.",
+      tags: ["Strategic HRM", "Tuyển dụng", "Giữ chân nhân tài"],
+      files: [{ kind: "Báo cáo", id: "1ifueJWiVeRgym-dx2n5TMaoWMPq648oP" }], thumb: "images/projects/vinamilk.jpg" },
+    { title: "Hành vi tổ chức & chính sách nhân sự của VietJet Air", group: "Nhân sự", course: "Hành vi tổ chức", date: "04/2026 – 06/2026", role: "Thành viên nghiên cứu",
+      desc: "Đánh giá chính sách hành vi tổ chức và hệ thống đánh giá hiệu suất cho lực lượng hơn 6.950 nhân viên. Đề xuất giải pháp chăm lo sức khỏe nhân viên và mô hình ca làm linh hoạt để giảm mệt mỏi, kiệt sức mùa cao điểm.",
+      tags: ["Hành vi tổ chức", "Đánh giá hiệu suất", "Phúc lợi"],
+      files: [{ kind: "Báo cáo", id: "1VJNK3aRb_PPMGlIF-cJvM-WO7RB5gem5" }], thumb: "images/projects/vietjet.jpg" },
+    { title: "So sánh phong cách lãnh đạo & văn hóa doanh nghiệp: FPT và Vingroup", group: "Nhân sự", course: "Văn hóa doanh nghiệp", date: "12/2025 – 03/2026", role: "",
+      desc: "Phân tích phong cách lãnh đạo và văn hóa doanh nghiệp của FPT và Vingroup, so sánh mô hình vận hành dân chủ và tập trung. Rút ra nhận định về cách giá trị doanh nghiệp củng cố tầm nhìn lãnh đạo để nâng cao năng lực cạnh tranh toàn cầu.",
+      tags: ["Lãnh đạo", "Văn hóa doanh nghiệp"],
+      files: [{ kind: "Báo cáo", id: "1JaNvoRHaUc8q0GDMUh1Kt1hFWxJBAyDP" }], thumb: "images/projects/fpt-vingroup.jpg" },
+    { title: "Ý thức sức khỏe và nghịch lý hành vi khi đặt đồ ăn online", group: "Nghiên cứu & Kinh doanh", course: "Nghiên cứu Marketing", date: "06/2026", role: "Phụ trách phần Kết quả nghiên cứu",
+      desc: "Nghiên cứu định tính về khoảng cách giữa ý định ăn uống lành mạnh và hành vi đặt đồ ăn qua GrabFood, ShopeeFood của nhân viên văn phòng. Nhóm phỏng vấn sâu 5 người, phân tích chủ đề từ 32 mã thành 7 chủ đề chính, chỉ ra vòng lặp \"hối hận – đặt lại\" và đề xuất giải pháp cho nền tảng giao đồ ăn.",
+      tags: ["Phỏng vấn sâu", "Phân tích chủ đề", "Hành vi người tiêu dùng"],
+      files: [{ kind: "Slide", id: "1Qa2D4ssaDan72lLdVQ1N3y_-GfVVuZYY" }, { kind: "Video", id: "1bvRpIyj1dfe6at42r0L345foNOnk3cfn" }], thumb: "images/projects/food-delivery.jpg" },
+    { title: "Sharera: nền tảng cho thuê đồ ngang hàng", group: "Nghiên cứu & Kinh doanh", course: "Thương mại điện tử", date: "03/2026", role: "Thành viên nhóm 6",
+      desc: "Xây dựng kế hoạch kinh doanh và website cho nền tảng cho thuê đồ dùng nhàn rỗi, hướng tới sinh viên. Gồm phân tích thị trường và đối thủ, mô hình doanh thu (phí giao dịch 10–15% và quảng cáo), kế hoạch nhân sự, kế hoạch tài chính 18 tháng với vốn khởi nghiệp 65 triệu đồng và chiến lược 4P.",
+      tags: ["Kế hoạch kinh doanh", "Thương mại điện tử", "Kế hoạch nhân sự"],
+      files: [{ kind: "Slide", id: "1zrK5rs_Bzh2MIx8NF7qE-W_JJ7x_yy8S" }], thumb: "images/projects/sharera.jpg" },
+    { title: "Mô hình tâm lý xã hội Veblen & hành vi khách hàng", group: "Nghiên cứu & Kinh doanh", course: "Hành vi khách hàng", date: "06/2026", role: "Thành viên",
+      desc: "Báo cáo giữa kỳ phân tích mô hình Veblen về tiêu dùng phô trương: bối cảnh ra đời, các luận điểm chính, ưu và nhược điểm. Ứng dụng vào nghiên cứu tình huống Apple về định giá cao cấp, hệ sinh thái và phân tầng sản phẩm.",
+      tags: ["Hành vi khách hàng", "Case study Apple"],
+      files: [{ kind: "Báo cáo", id: "1ZdzlAJmHZIC215jS_ksYHLha2SE7RQbm" }, { kind: "Slide", id: "1IX0iJRR0_zDnqycKHRF_L_Ka3gmQbK8l" }], thumb: "images/projects/veblen.jpg" },
+    { title: "Business Communication", group: "Nghiên cứu & Kinh doanh", course: "Giao tiếp kinh doanh", date: "2026", role: "Thành viên nhóm 5",
+      desc: "Bài thuyết trình nhóm môn Giao tiếp kinh doanh.",
+      tags: ["Thuyết trình", "Giao tiếp"],
+      files: [{ kind: "Slide", id: "1rO3drnPz77XZfSipV_l2r6UkIgc_TQKL" }], thumb: "images/projects/business-communication.jpg" }
+  ],
+  eventsIntro: "Ngoài giờ học, mình tham gia vận hành và tình nguyện tại các sự kiện lớn ở TP.HCM. Bấm vào ảnh để xem lớn.",
+  events: [
+    { name: "Concert Anh Trai Vượt Ngàn Chông Gai 2026", month: "Tháng 10", year: "2026", role: "Nhân sự vận hành (Operation)", scale: "2 đêm diễn",
+      desc: "Concert của chương trình Anh Trai Vượt Ngàn Chông Gai, diễn ra hai đêm 17–18/10/2026 tại KĐT Phú Long – Bình Trưng và The Global City, TP.HCM.",
+      did: ["Làm việc trong đội vận hành cùng Cổ Động Việt", "Chuẩn bị khu vực ghế ngồi khán giả theo sơ đồ khu và số ghế trước giờ diễn"],
+      photos: [
+        { src: "images/atvncg-2026-ca-nhan.jpg", cap: "Minh Nhàn tại khu vực sân khấu concert", pos: "center 52%" },
+        { src: "images/atvncg-2026-team.jpg", cap: "Đội vận hành tại khu ghế khán giả" },
+        { src: "images/atvncg-2026-poster.jpg", cap: "Poster concert Anh Trai Vượt Ngàn Chông Gai 2026", pos: "center 15%" }
+      ] },
+    { name: "VnExpress Marathon Ho Chi Minh City Midnight 2026", month: "Tháng 3", year: "2026", role: "Tình nguyện viên – Vật phẩm sau race", scale: "Tình nguyện viên",
+      desc: "Giải chạy đêm VnExpress Marathon tại TP. Hồ Chí Minh. Mình hoàn thành xuất sắc nhiệm vụ và được Ban tổ chức cấp chứng nhận tình nguyện viên ngày 22/03/2026.",
+      did: ["Hỗ trợ khu vực trao vật phẩm sau race cho vận động viên sau khi về đích"],
+      photos: [{ src: "images/vnexpress-marathon-2026-ca-nhan.jpg", cap: "Minh Nhàn trong áo tình nguyện viên VnExpress Marathon", pos: "center 45%" }, { src: "images/chung-nhan-vnexpress-marathon-2026.jpg", cap: "Chứng nhận tình nguyện viên VnExpress Marathon HCMC Midnight 2026", pos: "center 30%" }] },
+    { name: "HCMC Marathon 2026", month: "Tháng 1", year: "2026", role: "Tình nguyện viên", scale: "~11.000 VĐV",
+      desc: "Mùa giải thứ 13 của Ho Chi Minh City Marathon, chạy ngày 11/01/2026 với gần 11.000 vận động viên đến từ 75 quốc gia và vùng lãnh thổ. Đường chạy xuất phát và về đích tại Công viên 30/4, đường Lê Duẩn. Mình được đơn vị vận hành Pulse Active trao chứng nhận ghi nhận đóng góp với vai trò tình nguyện viên.",
+      did: [],
+      photos: [{ src: "images/chung-nhan-hcmc-marathon-2026.jpg", cap: "Chứng nhận tình nguyện viên HCMC Marathon 2026", pos: "center 55%" }] }
+  ],
+
+  contact: [
+    { k: "Email", v: "nhanltm23407e@st.uel.edu.vn", copy: true },
+    { k: "Điện thoại", v: "0985 582 577", copy: true },
+    { k: "Khu vực", v: "TP. Thủ Đức, TP. Hồ Chí Minh" }
+  ]
+};
+/* ================= HẾT PHẦN CẦN SỬA ================= */
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const imgSrc = (v, w = 1000) => !v ? "" : (/[\/.]/.test(v) ? v : `https://drive.google.com/thumbnail?id=${encodeURIComponent(v)}&sz=w${w}`);
+const fallback = (img) => { img.remove(); };
+const bright = ["var(--yellow)", "var(--pink)", "var(--green)", "var(--purple)"];
+
+// Hero
+document.title = `${DATA.name} Scrapbook`;
+$("brand").textContent = DATA.name;
+$("h-name").innerHTML = `${esc(DATA.nameParts[0])}<br>${esc(DATA.nameParts[1])}`;
+$("h-lead").innerHTML = DATA.lead;
+$("h-pills").innerHTML = DATA.heroPills.map((p) => `<span class="label">${esc(p.text)}</span>`).join("");
+$("h-photo").src = imgSrc(DATA.photo, 800);
+DATA.floatTags.forEach((t, i) => { $("tag" + (i + 1)).textContent = t; });
+$("cv-btn").href = DATA.cv; $("cv-nav").href = DATA.cv;
+$("stats").innerHTML = DATA.stats.map((s, i) => `<div class="patch"><span class="sew" style="--c:${bright[i % 4]}" aria-hidden="true"></span><b>${esc(s.num)}${s.unit ? `<small>${esc(s.unit)}</small>` : ""}</b><span>${esc(s.label)}</span></div>`).join("");
+
+// About
+$("stack").innerHTML = DATA.polaroids.map((p, i) => `<figure class="pol p${i + 1}"><span class="tape" aria-hidden="true"></span><img src="${esc(imgSrc(p.src, 600))}" alt="${esc(p.cap)}" loading="lazy" style="object-position:${esc(p.pos || "center")}"><figcaption>${esc(p.cap)}</figcaption></figure>`).join("");
+$("about-title").innerHTML = DATA.aboutTitle;
+$("about-text").innerHTML = DATA.about.map((p) => `<p>${esc(p)}</p>`).join("");
+$("goals").innerHTML = DATA.goals.map((g) => `<div class="goal"><small>${esc(g.label)}</small><b>${esc(g.text)}</b></div>`).join("");
+$("chip-groups").innerHTML =
+  `<div class="chip-group"><span>Kỹ năng</span><div class="chips">${DATA.skills.map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div></div>` +
+  `<div class="chip-group"><span>Ngoại ngữ</span><div class="chips">${DATA.langDetail.map((s) => `<span class="chip solid denim">${esc(s)}</span>`).join("")}</div></div>`;
+
+// Projects
+const fileUrl = (f) => f.link || `https://drive.google.com/file/d/${encodeURIComponent(f.id)}/view`;
+const types = ["Tất cả", ...new Set(DATA.projects.map((p) => p.group))];
+let activeType = "Tất cả";
+function renderFilters() {
+  if (types.length <= 2) { $("filters").hidden = true; return; }
+  $("filters").innerHTML = types.map((t, i) => `<button type="button" id="f-${i}" aria-pressed="${t === activeType}">${esc(t)}</button>`).join("");
+  $("filters").querySelectorAll("button").forEach((b, i) => b.onclick = () => { activeType = types[i]; renderFilters(); renderProjects(); });
+}
+function renderProjects() {
+  $("projects").innerHTML = DATA.projects.filter((p) => activeType === "Tất cả" || p.group === activeType).map((p) => {
+    const files = (p.files || []).filter((f) => f.id || f.link);
+    const main = files[0];
+    const src = imgSrc(p.thumb, 800);
+    return `<article class="proj">
+      <span class="tape" aria-hidden="true"></span>
+      <div class="thumb">
+        <div class="ph">${esc(main ? main.kind : "")}</div>
+        ${src ? (main ? `<a href="${esc(fileUrl(main))}" target="_blank" rel="noopener" tabindex="-1" style="position:absolute;inset:0"><img src="${esc(src)}" alt="Trang đầu: ${esc(p.title)}" loading="lazy" onerror="fallback(this)"></a>` : `<img src="${esc(src)}" alt="" loading="lazy" onerror="fallback(this)" style="position:relative">`) : ""}
+        <span class="woven ${p.group === "Nhân sự" ? "g-hr" : "g-biz"}">${esc(p.group)}</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta">${esc(p.course)} · ${esc(p.date)}</div>
+        <h3>${main ? `<a href="${esc(fileUrl(main))}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}</h3>
+        ${p.role ? `<div class="proj-role">${esc(p.role)}</div>` : ""}
+        <p>${esc(p.desc)}</p>
+        <div class="chips">${(p.tags || []).map((t) => `<span class="chip">${esc(t)}</span>`).join("")}</div>
+        ${files.length ? `<div class="proj-files">${files.map((f) => `<a class="file-btn denim" href="${esc(fileUrl(f))}" target="_blank" rel="noopener">Xem ${esc(f.kind.toLowerCase())} ↗</a>`).join("")}</div>` : ""}
+      </div>
+    </article>`;
+  }).join("");
+}
+renderFilters(); renderProjects();
+
+// Events
+$("events-intro").textContent = DATA.eventsIntro;
+const allPhotos = [];
+$("events").innerHTML = DATA.events.map((e) => {
+  const photos = (e.photos || []).map((raw, i) => {
+    const ph = typeof raw === "string" ? { src: raw } : raw;
+    const idx = allPhotos.push({ src: imgSrc(ph.src, 1600), cap: ph.cap || `${e.name} · ảnh ${i + 1}` }) - 1;
+    const src = imgSrc(ph.src, 600);
+    return `<button class="photo" type="button" data-i="${idx}" aria-label="Xem ảnh ${i + 1} của ${esc(e.name)}">
+      <span class="ph">Ảnh ${i + 1}</span>
+      ${src ? `<img src="${esc(src)}" alt="${esc(ph.cap || "")}" loading="lazy" onerror="fallback(this)" style="position:relative${ph.pos ? `;object-position:${esc(ph.pos)}` : ""}">` : ""}
+    </button>`;
+  }).join("");
+  return `<article class="event">
+    <div class="stub denim stitch">${e.month ? `<div class="m">${esc(e.month)}</div>` : ""}<div class="y">${esc(e.year)}</div><div class="r">${esc(e.scale)}</div></div>
+    <div class="event-card">
+      <span class="tape" aria-hidden="true"></span>
+      <h3>${esc(e.name)}</h3>
+      <p class="role">Vai trò: ${esc(e.role)}</p>
+      <p class="desc">${esc(e.desc)}</p>
+      ${e.did?.length ? `<ul>${e.did.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}
+      ${photos ? `<div class="photos">${photos}</div>` : ""}
+    </div>
+  </article>`;
+}).join("");
+
+// Lightbox
+let cur = 0;
+const openLb = (i) => {
+  const p = allPhotos[i]; if (!p?.src) return;
+  cur = i; $("lb-img").src = p.src; $("lb-cap").textContent = p.cap; $("lb").hidden = false; $("lb-x").focus();
+};
+const step = (d) => { const withSrc = allPhotos.map((p, i) => p.src ? i : -1).filter((i) => i >= 0); if (!withSrc.length) return; const pos = withSrc.indexOf(cur); openLb(withSrc[(pos + d + withSrc.length) % withSrc.length]); };
+$("events").addEventListener("click", (ev) => { const b = ev.target.closest(".photo"); if (b) openLb(+b.dataset.i); });
+$("lb-x").onclick = () => $("lb").hidden = true;
+$("lb-prev").onclick = () => step(-1);
+$("lb-next").onclick = () => step(1);
+$("lb").addEventListener("click", (ev) => { if (ev.target.id === "lb") $("lb").hidden = true; });
+document.addEventListener("keydown", (ev) => {
+  if ($("lb").hidden) return;
+  if (ev.key === "Escape") $("lb").hidden = true;
+  if (ev.key === "ArrowLeft") step(-1);
+  if (ev.key === "ArrowRight") step(1);
+});
+
+// Contact
+$("contact-list").innerHTML = DATA.contact.map((c, i) => `<div class="contact-row">
+  <div style="min-width:0"><div class="k">${esc(c.k)}</div>${c.href ? `<a class="v" href="${esc(c.href)}" target="_blank" rel="noopener">${esc(c.v)} ↗</a>` : `<div class="v">${esc(c.v)}</div>`}</div>
+  ${c.copy ? `<button class="copy" type="button" id="copy-${i}" data-v="${esc(c.v)}">Sao chép</button>` : ""}
+</div>`).join("");
+$("contact-list").addEventListener("click", async (ev) => {
+  const b = ev.target.closest(".copy"); if (!b) return;
+  try { await navigator.clipboard.writeText(b.dataset.v); b.textContent = "Đã chép"; }
+  catch { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling.querySelector(".v")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Đã chọn, nhấn Ctrl+C"; }
+  setTimeout(() => b.textContent = "Sao chép", 2000);
+});
+
+$("foot-name").textContent = `${DATA.name} · khâu từng mảnh nhỏ`;
+$("foot").textContent = `© ${new Date().getFullYear()} · ${DATA.schoolShort}`;
+</script>
+
+</body>
+</html>
