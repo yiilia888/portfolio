@@ -1,0 +1,63 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1600px; height: 900px; }
+  body {
+    font-family: "Be Vietnam Pro", Inter, sans-serif; color: #fff; overflow: hidden; position: relative;
+    background:
+      repeating-linear-gradient(125deg, rgba(255,255,255,.035) 0 90px, rgba(255,255,255,0) 90px 180px),
+      radial-gradient(1200px 700px at 85% 20%, rgba(121,191,225,.35) 0%, rgba(121,191,225,0) 60%),
+      linear-gradient(135deg, #21355A 0%, #23477A 55%, #255997 100%);
+  }
+  .wrap { position: absolute; inset: 0; padding: 80px 90px; display: grid; grid-template-columns: 1fr 520px; gap: 60px; }
+  .left { display: flex; flex-direction: column; }
+  .eyebrow { font: 600 22px "Space Grotesk", sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #AEDEED; display: flex; align-items: center; gap: 16px; }
+  .eyebrow::before { content: ""; width: 44px; height: 3px; background: #fff; border-radius: 2px; }
+  .brand { font-weight: 900; font-size: 150px; line-height: .95; letter-spacing: -.04em; margin-top: 34px; }
+  .title { font-weight: 700; font-size: 58px; line-height: 1.1; letter-spacing: -.015em; margin-top: 14px; }
+  .sub { font-weight: 500; font-size: 27px; color: #D7EEF6; margin-top: 18px; }
+  .stats { display: flex; gap: 0; margin-top: auto; border-top: 1px solid rgba(255,255,255,.25); padding-top: 30px; }
+  .stat { flex: 1; padding-right: 28px; }
+  .stat + .stat { padding-left: 28px; border-left: 1px solid rgba(255,255,255,.25); }
+  .stat b { display: block; font: 700 52px/1 "Space Grotesk", sans-serif; letter-spacing: -.02em; }
+  .stat span { display: block; font-size: 19px; color: #CDE7F2; margin-top: 10px; line-height: 1.35; }
+  .right { display: flex; flex-direction: column; justify-content: center; }
+  .panel { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 28px; padding: 40px 38px; backdrop-filter: blur(6px); }
+  .panel h4 { font: 600 19px "Space Grotesk", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #AEDEED; margin-bottom: 26px; }
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .step { height: 66px; border-radius: 14px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; font-weight: 700; font-size: 24px; color: #21355A; background: #fff; }
+  .step small { font: 600 16px "Space Grotesk", sans-serif; color: #255997; letter-spacing: .06em; }
+  .s1 { width: 100%; } .s2 { width: 88%; background: #D7EEF6; } .s3 { width: 76%; background: #AEDEED; } .s4 { width: 64%; background: #79BFE1; }
+  .s5 { width: 52%; background: #21355A; color: #fff; border: 2px solid #fff; } .s5 small { color: #AEDEED; }
+  .foot { position: absolute; left: 90px; right: 90px; bottom: 34px; display: flex; justify-content: space-between; font: 500 18px "Space Grotesk", sans-serif; color: #AEDEED; letter-spacing: .04em; }
+</style></head>
+<body>
+  <div class="wrap">
+    <div class="left">
+      <div class="eyebrow">HRM Case Study</div>
+      <div class="brand">Vinamilk</div>
+      <div class="title">HRM &amp; Recruitment Analysis</div>
+      <div class="sub">Recruitment, Selection &amp; Digital Transformation</div>
+      <div class="stats">
+        <div class="stat"><b>10,500+</b><span>employees<br>analysed</span></div>
+        <div class="stat"><b>3</b><span>SMART action<br>plans proposed</span></div>
+        <div class="stat"><b>−20%</b><span>time-to-fill target<br>for critical roles</span></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="panel">
+        <h4>Talent pipeline</h4>
+        <div class="funnel">
+          <div class="step s1">Attract <small>01</small></div>
+          <div class="step s2">Screen <small>02</small></div>
+          <div class="step s3">Select <small>03</small></div>
+          <div class="step s4">Onboard <small>04</small></div>
+          <div class="step s5">Retain <small>05</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Human Resource Management · UEL – VNU-HCM</span><span>Minh Nhàn · Team Leader</span></div>
+</body></html>
